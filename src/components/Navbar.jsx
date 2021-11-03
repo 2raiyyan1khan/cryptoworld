@@ -40,7 +40,7 @@ const Navbar = () => {
           </MenuButton>
         </StyledNav>
       </Container>
-      <Sidebar isOpen={toggleSidebar} />
+      <Sidebar isOpen={toggleSidebar} setToggleSidebar={setToggleSidebar} />
     </StyledNavbar>
   );
 };
