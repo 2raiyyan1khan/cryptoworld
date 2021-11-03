@@ -21,7 +21,7 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink activeClassName="active" to="/currencies">
+              <NavLink activeClassName="active" to="/cryptocurrencies">
                 Cryptocurrencies
               </NavLink>
             </li>
