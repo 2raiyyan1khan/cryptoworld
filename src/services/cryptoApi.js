@@ -13,9 +13,9 @@ export const cryptoApi = createApi({
     getCrypto: builder.query({
       query: (limit) => createRequest(`/coins?limit=${limit}`),
     }),
-    getCryptoDetails: builder.query({
+    getCryptoDetails: builder.mutation({
       query: (cId) => createRequest(`/coin/${cId}`),
     }),
   }),
 });
-export const { useGetCryptoQuery, useGetCryptoDetailsQuery } = cryptoApi;
+export const { useGetCryptoQuery, useGetCryptoDetailsMutation } = cryptoApi;

@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router";
 import HTMLReactParser from "html-react-parser";
-import { useGetCryptoDetailsQuery } from "../services/cryptoApi";
+import { useGetCryptoDetailsMutation } from "../services/cryptoApi";
 import { FiDollarSign } from "react-icons/fi";
 import {
   AiOutlineNumber,
@@ -18,11 +18,15 @@ import {
   Hr,
 } from "./styles/Details";
 import Loading from "./Loading";
+import { useEffect } from "react";
 
 const CurrenciesDetails = () => {
   const { cId } = useParams();
-  const { data, isFetching, isError, error } = useGetCryptoDetailsQuery(cId);
-
+  const [fetchDetails, { data, isFetching, isError, error }] =
+    useGetCryptoDetailsMutation(cId);
+  useEffect(() => {
+    fetchDetails(cId);
+  }, [cId]);
   const stats = [
     {
       title: "Price to USD",
@@ -103,7 +107,8 @@ const CurrenciesDetails = () => {
           <Hr />
           <DetailsArticle>
             <h2>{`Know About ${data?.data?.coin?.name}`} </h2>
-            {HTMLReactParser(data?.data?.coin.description)}
+            {data?.data?.coin.description &&
+              HTMLReactParser(data?.data?.coin.description)}
           </DetailsArticle>
           <Hr />
           <DetailsArticle>
